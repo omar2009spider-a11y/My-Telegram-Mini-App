@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#100c25" />
+    <meta name="description" content="One tiny blob. One huge snack run. Play Neon Nibbler." />
+    <title>Neon Nibbler — Cosmic snack run</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="settings.css" />
+    <link rel="stylesheet" href="game-content.css" />
+    <link rel="stylesheet" href="extras.css" />
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script src="https://sad.adsgram.ai/js/sad.min.js"></script>
+  </head>
+  <body>
+    <div id="boot" class="boot-screen">
+      <div class="boot-art"></div>
+      <div class="boot-content">
+        <div class="brand-mark"><span>✦</span></div>
+        <p class="eyebrow">A COSMIC SNACK RUN</p>
+        <h1>NEON<br /><span>NIBBLER</span></h1>
+        <div class="loader-track"><i></i></div>
+        <p class="loading-copy">Waking up your little star...</p>
+      </div>
+      <div class="boot-foot">MADE OF STARDUST <span>✦</span> BEST PLAYED WITH SOUND ON</div>
+    </div>
+
+    <main id="app" class="app-shell hidden">
+      <header class="topbar">
+        <a class="wordmark" href="#" aria-label="Neon Nibbler home"><span class="wordmark-icon">✦</span> NIBBLER</a>
+        <div class="top-actions">
+          <div class="balance-pill"><span class="coin-icon">✦</span><b id="coin-count">120</b><button class="add-coins" id="earn-btn" aria-label="Earn coins">+</button></div>
+          <button class="settings-button" id="settings-open" aria-label="Settings">⚙</button>
+          <button class="avatar" id="profile-btn" aria-label="Player profile"><span>✿</span></button>
+        </div>
+      </header>
+
+      <div id="home-screen">
+      <section class="welcome-row">
+        <div><p class="eyebrow">HEY, <span id="welcome-name">SPACE CADET</span></p><h2>Ready to <span>nibble?</span></h2></div>
+        <div class="streak-chip"><span>🔥</span><b id="streak-count">3</b><small>DAY STREAK</small></div>
+      </section>
+
+      <section class="hero-card" id="hero-card">
+        <div class="hero-image"></div>
+        <div class="hero-shade"></div>
+        <div class="hero-topline"><span class="live-dot"></span> SEASON 01 <span class="season-sep">/</span> STAR GARDEN</div>
+        <div class="hero-copy">
+          <div class="hero-tag">★ &nbsp; DAILY RUN IS LIVE</div>
+          <h3>Snack your<br />way to the <em>stars.</em></h3>
+          <p>Catch the glow. Dodge the doom.<br />How long can you keep the combo?</p>
+          <button class="play-button" id="play-btn"><span class="play-triangle">▶</span> PLAY NOW <span class="button-arrow">↗</span></button>
+        </div>
+        <div class="hero-score"><span>YOUR BEST</span><b id="best-score-hero">0</b><small>PTS</small></div>
+        <div class="hero-sparkle sparkle-one">✦</div><div class="hero-sparkle sparkle-two">✧</div>
+      </section>
+
+      <section class="section-heading"><div><p class="eyebrow">YOUR NEXT MISSION</p><h3>Little wins, big loot</h3></div><button class="text-button" id="all-missions">ALL MISSIONS <span>↗</span></button></section>
+      <section class="mission-card">
+        <div class="mission-icon">🍓</div>
+        <div class="mission-info"><div class="mission-title">Berry beginner <span class="reward">+50 ✦</span></div><p>Catch 20 star-fruit in one run</p><div class="progress-line"><i id="mission-progress"></i></div><small id="mission-count">0 / 20 CAUGHT</small></div>
+        <button class="mission-go" id="mission-go">GO <span>›</span></button>
+      </section>
+
+      <section class="section-heading leaderboard-heading"><div><p class="eyebrow">THE NEIGHBORHOOD</p><h3>Star chasers <span class="tiny-spark">✦</span></h3></div><button class="text-button" id="leaderboard-btn">LEADERBOARD <span>↗</span></button></section>
+      <section class="leaderboard-card">
+        <div class="leader-row"><span class="rank rank-gold">01</span><div class="leader-avatar avatar-peach">🍑</div><div class="leader-name"><b>LunaLoops</b><small>✨ Comet catcher</small></div><div class="leader-points">8,420 <span>✦</span></div><div class="leader-crown">♛</div></div>
+        <div class="leader-row"><span class="rank">02</span><div class="leader-avatar avatar-blue">🪐</div><div class="leader-name"><b>orbit.boi</b><small>🚀 Speed nibber</small></div><div class="leader-points">7,960 <span>✦</span></div></div>
+        <div class="leader-row"><span class="rank">03</span><div class="leader-avatar avatar-violet">🐙</div><div class="leader-name"><b>little.meteor</b><small>💫 Star scout</small></div><div class="leader-points">7,115 <span>✦</span></div></div>
+        <div class="your-rank"><span>YOUR BEST</span><b id="your-rank-score">0 ✦</b><small>Keep nibbling to climb ↑</small></div>
+      </section>
+
+      <section class="section-heading mode-heading"><div><p class="eyebrow">PICK YOUR VIBE</p><h3>Choose a run</h3></div><button class="text-button" id="modes-link">GAME MODES <span>↗</span></button></section>
+      <section class="mode-strip"><button class="mode-card active" data-mode="classic"><span>⏱</span><b>CLASSIC</b><small>30 sec · balanced</small></button><button class="mode-card" data-mode="zen"><span>☁</span><b>ZEN</b><small>60 sec · no comets</small></button><button class="mode-card" data-mode="rush"><span>⚡</span><b>RUSH</b><small>25 sec · extra loot</small></button></section>
+      </div>
+      <section id="subscreen" class="subscreen hidden" aria-live="polite"></section>
+      <nav class="bottom-nav" aria-label="Main navigation"><button class="nav-item active" data-tab="home"><span>⌂</span>HOME</button><button class="nav-item" data-tab="missions"><span>✧</span>MISSIONS</button><button class="nav-item" data-tab="shop"><span>◈</span>STASH</button><button class="nav-item" data-tab="friends"><span>♧</span>FRIENDS</button></nav>
+      <footer class="footer-note">A tiny game for your big group chat <span>♡</span></footer>
+    </main>
+
+    <div id="game" class="game-overlay hidden" aria-hidden="true">
+      <div class="game-backdrop"></div>
+      <div class="game-header"><button id="close-game" class="icon-button" aria-label="Close game">×</button><div class="run-label"><span class="live-dot"></span> <span id="mode-run-label">CLASSIC RUN</span></div><button class="icon-button sound-button" id="sound-btn" aria-label="Toggle sound">♫</button></div>
+      <div class="game-stats"><div><small>SCORE</small><b id="score">0</b></div><div class="timer-wrap"><div class="timer-ring"><span id="timer">30</span></div><small>SECONDS</small></div><div><small>COMBO</small><b id="combo">×1</b></div></div>
+      <div class="game-stage" id="game-stage"><div class="stage-art"></div><div class="stage-stars"></div><div class="tap-hint" id="tap-hint"><span>↔</span> TAP TO NIBBLE</div><div id="items" class="items-layer"></div><div class="player-blob" id="player-blob"><span class="blob-eye eye-left"></span><span class="blob-eye eye-right"></span><span class="blob-mouth"></span><span class="blob-cheek"></span></div><div id="floaters" class="floaters-layer"></div></div>
+      <div class="game-footer"><div class="powerup"><span>⚡</span><div><b>STAR BURST</b><small>Charges · <i id="shield-count">0</i> shields</small></div></div><button id="boost-btn" class="boost-button">BOOST <span>1</span></button></div>
+      <p class="game-instruction">Slide your thumb to move <span>·</span> grab ✦ <span>·</span> dodge ☄</p>
+    </div>
+
+    <div id="result" class="result-overlay hidden" aria-hidden="true"><div class="result-card"><div class="result-glow"></div><button class="icon-button result-close" id="result-close" aria-label="Close results">×</button><div class="result-badge">✦ RUN COMPLETE ✦</div><div class="result-mascot">👾</div><p class="eyebrow">THAT WAS OUT OF THIS WORLD</p><h2 id="result-title">Star material!</h2><div class="result-score"><b id="final-score">0</b><span>POINTS</span></div><div class="result-stats"><div><b id="final-fruit">0</b><small>FRUIT</small></div><div><b id="final-best">0</b><small>BEST</small></div><div><b id="final-coins">+0</b><small>STARS</small></div></div><p class="result-xp" id="final-xp">+0 XP</p><button class="play-button result-play" id="again-btn"><span class="play-triangle">↻</span> RUN IT BACK <span class="button-arrow">↗</span></button><button class="share-button" id="share-btn">✉ &nbsp; BRAG TO YOUR FRIENDS</button></div></div>
+    <div id="settings" class="settings-overlay hidden" aria-hidden="true"><section class="settings-card" role="dialog" aria-modal="true" aria-labelledby="settings-title"><button class="icon-button settings-close" id="settings-close" aria-label="Close settings">×</button><div class="settings-emblem">♫</div><p class="eyebrow">MAKE IT YOURS</p><h2 id="settings-title">Sound settings</h2><p class="settings-description">Choose what you want to hear on your snack run.</p><div class="settings-row"><div class="settings-row-icon music-icon">♫</div><div class="settings-row-copy"><b>Music</b><small>Spacey arcade background tune</small></div><button class="switch" id="music-toggle" role="switch" aria-checked="true" aria-label="Music"><span></span></button></div><div class="settings-row"><div class="settings-row-icon effects-icon">✦</div><div class="settings-row-copy"><b>Sound effects</b><small>Fruit, comets, boost and score</small></div><button class="switch" id="sfx-toggle" role="switch" aria-checked="true" aria-label="Sound effects"><span></span></button></div><p class="settings-note">Audio starts after your first tap.</p></section></div>
+    <div id="toast" class="toast hidden"></div>
+    <script src="app.js"></script>
+    const tg = window.Telegram.WebApp;
+tg.ready();
+tg.expand(); // Expands your game to full screen inside Telegram
+
+// Get the Telegram player's name and ID automatically
+const player = tg.initDataUnsafe?.user;
+console.log("Player Name:", player?.first_name);
+
+// Function to show a Rewarded Video Ad and earn USD
+const AdController = window.Adsgram?.init({ blockId: "YOUR_ADSGRAM_BLOCK_ID" });
+function watchAdForCoins() {
+  if (!AdController) return;
+  AdController.show().then((result) => {
+    if (result.done) {
+      // Give the player extra coins or revive them here!
+      alert("You earned 100 bonus coins!");
+    }
+  });
+}
+  </body>
+</html>
